@@ -1,7 +1,6 @@
 import { Button, Icon, Modal, Spinner, Text } from "@shopify/polaris";
 import { MicrophoneIcon } from "@shopify/polaris-icons";
-import { useCallback, useEffect, useState } from "react";
-import { AIProviderFactory } from "../../lib/ai/factory";
+import { useCallback, useState } from "react";
 import { useFinanceStore } from "../../lib/store/finance-store";
 
 // Web Speech API types
@@ -145,7 +144,7 @@ export function VoiceTransactionButton({
   //}, []);
 
   const processVoiceInput = useCallback(
-    async (text: string) => {
+    async (_text: string) => {
       try {
         setIsProcessing(true);
         setError(null);
