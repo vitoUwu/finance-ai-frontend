@@ -136,13 +136,13 @@ export function VoiceTransactionButton({
     }>;
   } | null>(null);
 
-  useEffect(() => {
-    const factory = AIProviderFactory.getInstance();
+  //useEffect(() => {
+  //  const factory = AIProviderFactory.getInstance();
 
-    // Register providers with API keys
-    factory.registerProvider("openai", import.meta.env.VITE_OPENAI_API_KEY);
-    factory.registerProvider("gemini", import.meta.env.VITE_GEMINI_API_KEY);
-  }, []);
+  //  // Register providers with API keys
+  //  factory.registerProvider("openai", import.meta.env.VITE_OPENAI_API_KEY);
+  //  factory.registerProvider("gemini", import.meta.env.VITE_GEMINI_API_KEY);
+  //}, []);
 
   const processVoiceInput = useCallback(
     async (text: string) => {
@@ -150,22 +150,25 @@ export function VoiceTransactionButton({
         setIsProcessing(true);
         setError(null);
 
-        const factory = AIProviderFactory.getInstance();
+        alert("AI feature disabled");
+        return;
+
+        //const factory = AIProviderFactory.getInstance();
         // Use Gemini by default, fallback to OpenAI if it fails
-        const provider = factory.getProvider("gemini");
+        //const provider = factory.getProvider("gemini");
 
-        const response = await provider.generateTransactions({
-          voiceInput: text,
-          context: {
-            categories,
-            accounts,
-          },
-          language: navigator.language,
-          date: new Date().toISOString(),
-        });
+        //const response = await provider.generateTransactions({
+        //  voiceInput: text,
+        //  context: {
+        //    categories,
+        //    accounts,
+        //  },
+        //  language: navigator.language,
+        //  date: new Date().toISOString(),
+        //});
 
-        setSuggestedResponse(response);
-        setShowModal(true);
+        //setSuggestedResponse(response);
+        //setShowModal(true);
       } catch (error) {
         console.error("Error processing voice input:", error);
         setError("Failed to process voice input. Please try again.");
