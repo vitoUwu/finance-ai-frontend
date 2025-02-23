@@ -92,7 +92,7 @@ export function CalendarPage() {
   const handleDelete = useCallback(async () => {
     if (selectedTransaction) {
       try {
-        await deleteTransaction(selectedTransaction.id);
+        await deleteTransaction({ id: selectedTransaction.id });
         setSelectedTransaction(null);
         setIsDeleteModalOpen(false);
       } catch (error) {

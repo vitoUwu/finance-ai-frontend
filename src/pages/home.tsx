@@ -14,13 +14,20 @@ import { TransactionModal } from "../components/transactions/TransactionModal";
 import { useFinanceStore } from "../lib/store/finance-store";
 
 export function HomePage() {
-  const { transactions, accounts, categories } = useFinanceStore();
+  const { transactions, categories } = useFinanceStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Calculate total balance across all accounts
   const totalBalance = useMemo(() => {
-    return accounts.reduce((sum, account) => sum + account.balance, 0);
-  }, [accounts]);
+    return transactions.reduce(
+      (sum, transaction) =>
+        sum +
+        (transaction.type === "INCOME"
+          ? transaction.amount
+          : -transaction.amount),
+      0
+    );
+  }, [transactions]);
 
   // Calculate monthly income and expenses
   const monthlyStats = useMemo(() => {
